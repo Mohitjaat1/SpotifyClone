@@ -88,7 +88,7 @@ async function displayAlbums() {
             let folder = e.href.split("/")[4]
             
             // Get the metadata of the folder
-            let a = await fetch(`songs/${folder}/info.json`)
+            let a = await fetch(`/songs/${folder}/info.json`)
             let response = await a.json(); 
             cardContainer.innerHTML = cardContainer.innerHTML + ` <div data-folder="${folder}" class="card">
             <div class="play">
@@ -110,8 +110,8 @@ async function displayAlbums() {
     // Load the playlist whenever card is clicked
     Array.from(document.getElementsByClassName("card")).forEach(e => { 
         e.addEventListener("click", async item => {
-            console.log('songs/${item.currentTarget.dataset.folder}')
-            songs = await getSongs(`songs/${item.currentTarget.dataset.folder}`)  
+            console.log('/songs/${item.currentTarget.dataset.folder}')
+            songs = await getSongs(`/songs/${item.currentTarget.dataset.folder}`)  
             playMusic(songs[0])
 
         })
@@ -122,7 +122,7 @@ async function displayAlbums() {
 async function main() {
     // Get the list of all the songs
 
- await getSongs("songs/shubh")
+ await getSongs("/songs/shubh/")
 
     playMusic(songs[0], true)
 
