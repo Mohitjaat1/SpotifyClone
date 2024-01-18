@@ -123,7 +123,7 @@ async function displayAlbums() {
 
 async function main() {
     // Get the list of all the songs
-    await getSongs("https://github.com/Mohitjaat1/SpotifyClone/tree/main/songs/shubh")
+    await getSongs("https://github.com/Mohitjaat1/SpotifyClone/tree/main/songs/shubh/")
     playMusic(songs[0], true)
 
     // Display all the albums on the page
