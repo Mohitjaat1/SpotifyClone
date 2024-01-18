@@ -38,14 +38,14 @@ async function getSongs(folder) {
     let songUL = document.querySelector(".songList").getElementsByTagName("ul")[0]
     songUL.innerHTML = ""
     for (const song of songs) {
-        songUL.innerHTML = songUL.innerHTML + `<li><img class="invert" width="34" src="img/music.svg" alt="">
+        songUL.innerHTML = songUL.innerHTML + `<li><img class="invert" width="34" src="https://github.com/Mohitjaat1/SpotifyClone/edit/main/img/music.svg" alt="">
                             <div class="info">
                                 <div> ${song.replaceAll("%20", " ")}</div>
                                 <div>Harry</div>
                             </div>
                             <div class="playnow">
                                 <span>Play Now</span>
-                                <img class="invert" src="img/play.svg" alt="">
+                                <img class="invert" src="https://github.com/Mohitjaat1/SpotifyClone/edit/main/img/play.svg" alt="">
                             </div> </li>`;
     }
 
@@ -74,7 +74,7 @@ const playMusic = (track, pause = false) => {
 
 
 async function displayAlbums() {
-    let a = await fetch(`SpotifyClone/songs/`)
+    let a = await fetch(`https://github.com/Mohitjaat1/SpotifyClone/edit/main/songs/`)
 
     let response = await a.text();
     let div = document.createElement("div")
@@ -91,7 +91,7 @@ async function displayAlbums() {
             let folder = e.href.split("/")[4]
 
             // Get the metadata of the folder
-            let a = await fetch(`SpotifyClone/songs/${folder}/info.json`)
+            let a = await fetch(`https://github.com/Mohitjaat1/SpotifyClone/edit/main/songs/${folder}/info.json`)
             let response = await a.json();
             cardContainer.innerHTML = cardContainer.innerHTML + ` <div data-folder="${folder}" class="card">
             <div class="play">
@@ -102,7 +102,7 @@ async function displayAlbums() {
                 </svg>
             </div>
 
-            <img src="SpotifyClone/songs/${folder}/cover.jpg" alt="">
+            <img src="songs/${folder}/cover.jpg" alt="">
             <h2>${response.title}</h2>
             <p>${response.description}</p>
         </div>`
@@ -113,7 +113,7 @@ async function displayAlbums() {
     // Load the playlist whenever card is clicked
     Array.from(document.getElementsByClassName("card")).forEach(e => {
         e.addEventListener("click", async item => {
-            songs = await getSongs(`SpotifyClone//songs/${item.currentTarget.dataset.folder}/`)
+            songs = await getSongs(`https://github.com/Mohitjaat1/SpotifyClone/edit/main/songs/${item.currentTarget.dataset.folder}/`)
             playMusic(songs[0])
 
         })
@@ -123,7 +123,7 @@ async function displayAlbums() {
 
 async function main() {
     // Get the list of all the songs
-    await getSongs("SpotifyClone/songs/shubh/")
+    await getSongs("https://github.com/Mohitjaat1/SpotifyClone/tree/main/songs/shubh")
     playMusic(songs[0], true)
 
     // Display all the albums on the page
@@ -132,7 +132,7 @@ async function main() {
     // Load the playlist whenever card is clicked
     Array.from(document.getElementsByClassName("card")).forEach(e => {
         e.addEventListener("click", async item => {
-            songs = await getSongs(`SpotifyClone/songs/${item.currentTarget.dataset.folder}/`)
+            songs = await getSongs(`https://github.com/Mohitjaat1/SpotifyClone/edit/main/songs/${item.currentTarget.dataset.folder}/`)
             playMusic(songs[0])
 
         })
