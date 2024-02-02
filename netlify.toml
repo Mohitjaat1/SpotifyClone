@@ -1,3 +1,3 @@
 [build]
-  publish = "/" # Publish files from the root directory
+  publish = "." # Publish files from the root directory
 
