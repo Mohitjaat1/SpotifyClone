@@ -3,19 +3,10 @@ let songs;
 let currFolder;
 
 async function fetchSongs(directory) {
-    try {
-        const response = await fetch(directory);
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response;
-    } catch (error) {
-        console.error('Fetch error:', error);
-        // Handle the error appropriately
-        throw error; // Propagate the error to the caller if needed
-    }
+    const response = await fetch(directory);
+    const data = await response.json();
+    return data;
 }
-
 
 function secondsToMinutesSeconds(seconds) {
     if (isNaN(seconds) || seconds < 0) {
@@ -35,13 +26,7 @@ async function getSongs(folder) {
     currFolder = folder;
     
     let a = await fetchSongs(`/${folder}/`);
-if (a && a.ok) {
     let response = await a.text();
-    // Continue processing the response
-} else {
-    console.error('Invalid or unsuccessful response:', a);
-}
-
     let div = document.createElement("div")
     div.innerHTML = response;
     let as = div.getElementsByTagName("a")
@@ -138,8 +123,8 @@ async function displayAlbums() {
 
 async function main() {
     // Get the list of all the songs
-    await getSongs("songs/shubh")
-    playMusic(songs[0], true)
+   // await getSongs("songs/shubh")
+    //playMusic(songs[0], true)
 
     // Display all the albums on the page
     await displayAlbums()
