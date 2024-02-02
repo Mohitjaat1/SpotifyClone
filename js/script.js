@@ -3,9 +3,18 @@ let songs;
 let currFolder;
 
 async function fetchSongs(directory) {
+    try {
     const response = await fetch(directory);
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
     const data = await response.json();
     return data;
+} catch (error) {
+    console.error('Fetch error:', error);
+    // Handle the error appropriately, e.g., show a message to the user.
+}
+
 }
 
 
