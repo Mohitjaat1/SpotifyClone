@@ -2,6 +2,13 @@ let currentSong = new Audio();
 let songs;
 let currFolder;
 
+async function fetchSongs(directory) {
+    const response = await fetch(directory);
+    const data = await response.json();
+    return data;
+}
+
+
 function secondsToMinutesSeconds(seconds) {
     if (isNaN(seconds) || seconds < 0) {
         return "00:00";
@@ -18,7 +25,7 @@ function secondsToMinutesSeconds(seconds) {
 
 async function getSongs(folder) {
     currFolder = folder;
-    let a = await fetch(`/${folder}/`)
+    let a = await fetchSongs(`/${folder}/`)
     let response = await a.text();
     let div = document.createElement("div")
     div.innerHTML = response;
@@ -73,7 +80,7 @@ const playMusic = (track, pause = false) => {
 
 async function displayAlbums() {
     console.log("displaying albums")
-    let a = await fetch(`/songs/`)
+    let a = await fetchSongs(`/songs/`)
     let response = await a.text();
     let div = document.createElement("div")
     div.innerHTML = response;
